@@ -1,0 +1,23 @@
+---
+import Section from './Section.astro';
+
+interface Props {
+	overline?: string;
+	title: string;
+	description?: string;
+	class?: string;
+}
+
+const {
+	overline,
+	title,
+	description,
+	class: className = '',
+} = Astro.props;
+---
+
+<div class={`mb-12 max-w-prose ${className}`}>
+	{overline && <p class="typo-overline mb-3">{overline}</p>}
+	<h2 class="typo-heading-lg">{title}</h2>
+	{description && <p class="typo-lead mt-4">{description}</p>}
+</div>

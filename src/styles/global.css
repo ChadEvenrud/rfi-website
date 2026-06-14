@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		@apply scroll-smooth antialiased;
+	}
+
+	body {
+		@apply min-h-screen bg-rfi-navy-950 font-sans text-body text-rfi-muted;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		@apply text-rfi-white;
+	}
+
+	::selection {
+		@apply bg-rfi-blue/40 text-rfi-white;
+	}
+}
+
+@layer components {
+	/* ── Typography ── */
+	.typo-display-xl {
+		@apply text-display-xl text-rfi-white;
+	}
+
+	.typo-display-lg {
+		@apply text-display-lg text-rfi-white;
+	}
+
+	.typo-display {
+		@apply text-display text-rfi-white;
+	}
+
+	.typo-heading-lg {
+		@apply text-heading-lg text-rfi-white;
+	}
+
+	.typo-heading {
+		@apply text-heading text-rfi-white;
+	}
+
+	.typo-heading-sm {
+		@apply text-heading-sm text-rfi-white;
+	}
+
+	.typo-overline {
+		@apply text-overline uppercase text-rfi-cyan;
+	}
+
+	.typo-lead {
+		@apply text-body-lg text-rfi-muted;
+	}
+
+	/* ── Layout ── */
+	.container-rfi {
+		@apply mx-auto w-full max-w-content px-6 lg:px-8;
+	}
+
+	.section {
+		@apply py-section;
+	}
+
+	.section-sm {
+		@apply py-section-sm;
+	}
+
+	.section-lg {
+		@apply py-section-lg;
+	}
+
+	.section-xl {
+		@apply py-section-xl;
+	}
+
+	/* ── Buttons ── */
+	.btn {
+		@apply inline-flex items-center justify-center gap-2 rounded-brand px-6 py-3 text-body-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rfi-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-rfi-navy-950 disabled:pointer-events-none disabled:opacity-50;
+	}
+
+	.btn-sm {
+		@apply px-4 py-2 text-caption;
+	}
+
+	.btn-lg {
+		@apply px-8 py-4 text-body;
+	}
+
+	.btn-primary {
+		@apply btn bg-gradient-brand text-rfi-white shadow-glow-blue hover:brightness-110 hover:shadow-glow-violet active:scale-[0.98];
+	}
+
+	.btn-secondary {
+		@apply btn border border-rfi-cyan/40 bg-transparent text-rfi-cyan hover:border-rfi-cyan hover:bg-rfi-cyan-dim active:scale-[0.98];
+	}
+
+	.btn-ghost {
+		@apply btn bg-transparent text-rfi-muted hover:bg-rfi-navy-700 hover:text-rfi-white active:scale-[0.98];
+	}
+
+	/* ── Cards ── */
+	.card {
+		@apply rounded-brand-lg border border-rfi-navy-600/60 bg-rfi-navy-800/50 p-6 backdrop-blur-sm;
+	}
+
+	.card-elevated {
+		@apply card shadow-card transition-shadow duration-300 hover:border-rfi-blue/30 hover:shadow-card-hover;
+	}
+
+	.card-glow {
+		@apply card relative overflow-hidden;
+	}
+
+	.card-glow::before {
+		content: '';
+		@apply pointer-events-none absolute inset-0 bg-gradient-brand-soft opacity-60;
+	}
+
+	.card-glow > * {
+		@apply relative z-10;
+	}
+
+	.card-gradient-border {
+		@apply relative rounded-brand-lg bg-rfi-navy-800/80 p-px;
+		background-image: linear-gradient(
+			135deg,
+			rgba(0, 210, 255, 0.45) 0%,
+			rgba(0, 114, 255, 0.25) 50%,
+			rgba(142, 45, 226, 0.45) 100%
+		);
+	}
+
+	.card-gradient-border-inner {
+		@apply h-full rounded-brand-lg bg-rfi-navy-900/95 p-6 backdrop-blur-sm;
+	}
+
+	/* ── Logo (header only) ── */
+	.logo-wrap-header {
+		@apply block shrink-0 leading-none;
+		height: var(--header-logo-h);
+	}
+
+	.header-logo-img {
+		display: block;
+		height: 100%;
+		width: auto;
+		max-width: var(--header-logo-w);
+		object-fit: contain;
+		object-position: left center;
+		transition:
+			height 0.35s ease,
+			max-width 0.35s ease;
+	}
+
+	/* Wide lockup — icon left, text right (header default) */
+	.header-logo-img--vertical {
+		max-width: var(--header-logo-w, 16rem);
+	}
+
+	/* Stacked lockup — icon above text */
+	.header-logo-img--horizontal {
+		max-width: var(--header-logo-w, 5rem);
+	}
+
+	/* ── Dynamic site header ── */
+	.site-header {
+		--header-py: 1.125rem;
+		--header-logo-h: 4rem;
+		--header-logo-w: 16rem;
+		--header-nav-size: 1.0625rem;
+		transition:
+			background-color 0.35s ease,
+			border-color 0.35s ease,
+			box-shadow 0.35s ease;
+	}
+
+	.site-header.is-scrolled {
+		--header-py: 0.75rem;
+		--header-logo-h: 3rem;
+		--header-logo-w: 12rem;
+		--header-nav-size: 0.9375rem;
+		@apply border-rfi-navy-600/70 shadow-card;
+	}
+
+	.site-header--logo-vertical {
+		--header-logo-h: 4rem;
+		--header-logo-w: 16rem;
+	}
+
+	.site-header--logo-vertical.is-scrolled {
+		--header-logo-h: 3rem;
+		--header-logo-w: 12rem;
+	}
+
+	.site-header--logo-horizontal {
+		--header-logo-h: 3.5rem;
+		--header-logo-w: 5.5rem;
+	}
+
+	.site-header--logo-horizontal.is-scrolled {
+		--header-logo-h: 2.25rem;
+		--header-logo-w: 4rem;
+	}
+
+	.site-header-inner {
+		padding-block: var(--header-py);
+		transition: padding 0.35s ease;
+	}
+
+	.site-header-nav .nav-link,
+	.site-header-nav .nav-link-active {
+		font-size: var(--header-nav-size);
+		font-weight: 500;
+		transition: font-size 0.35s ease;
+	}
+	.nav-link {
+		@apply text-body-sm text-rfi-subtle transition-colors duration-200 hover:text-rfi-cyan;
+	}
+
+	.nav-link-active {
+		@apply nav-link text-rfi-white;
+	}
+
+	/* ── Blueprint grid accent ── */
+	.bg-blueprint {
+		background-image:
+			linear-gradient(rgba(0, 210, 255, 0.04) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(0, 210, 255, 0.04) 1px, transparent 1px);
+		background-size: 48px 48px;
+	}
+}
+
+@layer utilities {
+	.text-gradient-brand {
+		@apply bg-gradient-brand bg-clip-text text-transparent;
+	}
+
+	.text-gradient-brand-vertical {
+		@apply bg-gradient-brand-vertical bg-clip-text text-transparent;
+	}
+
+	.border-gradient-brand {
+		border-image: linear-gradient(135deg, #00d2ff, #0072ff, #8e2de2) 1;
+	}
+
+	.glow-dot {
+		@apply h-1.5 w-1.5 rounded-full bg-rfi-cyan shadow-glow-cyan;
+	}
+}

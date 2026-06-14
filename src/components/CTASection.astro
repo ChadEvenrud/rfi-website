@@ -1,0 +1,32 @@
+---
+import Section from './Section.astro';
+import Card from './Card.astro';
+import Button from './Button.astro';
+
+interface Props {
+	overline?: string;
+	title: string;
+	description: string;
+	buttonText?: string;
+	buttonHref?: string;
+}
+
+const {
+	overline = 'Get Started',
+	title,
+	description,
+	buttonText = 'Contact Us',
+	buttonHref = '/contact',
+} = Astro.props;
+---
+
+<Section>
+	<div class="container-rfi">
+		<Card variant="gradient-border" class="text-center">
+			{overline && <p class="typo-overline mb-3">{overline}</p>}
+			<h2 class="typo-heading mb-4">{title}</h2>
+			<p class="typo-lead mx-auto mb-8 max-w-xl">{description}</p>
+			<Button size="lg" href={buttonHref}>{buttonText}</Button>
+		</Card>
+	</div>
+</Section>

@@ -1,0 +1,41 @@
+---
+import SEO from '../components/SEO.astro';
+import { site } from '../data/site';
+import type { SEOProps } from '../types/seo';
+import '../styles/global.css';
+
+interface Props extends SEOProps {}
+
+const { title, description, canonical, image, noindex, type, publishedTime, modifiedTime } =
+	Astro.props;
+---
+
+<!doctype html>
+<html lang={site.locale}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href="/images/brand/rfi-logo-vertical.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<meta name="generator" content={Astro.generator} />
+		<SEO
+			title={title}
+			description={description}
+			canonical={canonical}
+			image={image}
+			noindex={noindex}
+			type={type}
+			publishedTime={publishedTime}
+			modifiedTime={modifiedTime}
+		/>
+		<slot name="head" />
+	</head>
+	<body class="flex min-h-screen flex-col bg-rfi-navy-950">
+		<slot />
+	</body>
+</html>

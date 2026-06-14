@@ -1,0 +1,38 @@
+---
+import Section from './Section.astro';
+
+interface Props {
+	overline?: string;
+	title: string;
+	description?: string;
+	align?: 'left' | 'center';
+	class?: string;
+}
+
+const {
+	overline,
+	title,
+	description,
+	align = 'left',
+	class: className = '',
+} = Astro.props;
+
+const alignClass = align === 'center' ? 'text-center mx-auto' : '';
+---
+
+<Section size="lg" class={`relative overflow-hidden bg-gradient-hero bg-blueprint ${className}`}>
+	<div class={`container-rfi relative z-10 ${alignClass}`}>
+		{overline && <p class="typo-overline mb-4">{overline}</p>}
+		<h1 class={`typo-display-lg max-w-4xl ${align === 'center' ? 'mx-auto' : ''}`}>{title}</h1>
+		{
+			description && (
+				<p
+					class={`typo-lead mt-6 max-w-2xl ${align === 'center' ? 'mx-auto' : ''}`}
+				>
+					{description}
+				</p>
+			)
+		}
+		<slot />
+	</div>
+</Section>

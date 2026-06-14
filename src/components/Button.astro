@@ -1,0 +1,45 @@
+---
+import type { ButtonVariant } from '../data/brand';
+
+interface Props {
+	variant?: ButtonVariant;
+	size?: 'sm' | 'md' | 'lg';
+	href?: string;
+	type?: 'button' | 'submit' | 'reset';
+	class?: string;
+}
+
+const {
+	variant = 'primary',
+	size = 'md',
+	href,
+	type = 'button',
+	class: className = '',
+} = Astro.props;
+
+const variantClasses: Record<ButtonVariant, string> = {
+	primary: 'btn-primary',
+	secondary: 'btn-secondary',
+	ghost: 'btn-ghost',
+};
+
+const sizeClasses = {
+	sm: 'btn-sm',
+	md: '',
+	lg: 'btn-lg',
+};
+
+const classes = [variantClasses[variant], sizeClasses[size], className].filter(Boolean).join(' ');
+---
+
+{
+	href ? (
+		<a href={href} class={classes}>
+			<slot />
+		</a>
+	) : (
+		<button type={type} class={classes}>
+			<slot />
+		</button>
+	)
+}

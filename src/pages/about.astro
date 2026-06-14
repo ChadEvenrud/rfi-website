@@ -1,0 +1,99 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import CTASection from '../components/CTASection.astro';
+import { pageMeta } from '../data/pages';
+import { brand } from '../data/brand';
+
+const meta = pageMeta.about;
+---
+
+<PageLayout title={meta.title} description={meta.description}>
+	<PageHero
+		overline="About"
+		title="Technology partner for construction teams"
+		description="RFI Data Solutions helps construction organizations connect applications, understand their data, and adopt AI with confidence."
+	/>
+
+	<Section>
+		<div class="container-rfi">
+			<div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+				<div>
+					<SectionHeader
+						overline="Our Mission"
+						title="Clarity in complex construction environments"
+						description="Construction runs on fragmented tools and fast-moving project data. RFI exists to bring those pieces together — so teams can make better decisions, faster."
+					/>
+				</div>
+				<Card variant="gradient-border">
+					<p class="typo-overline mb-3">At a Glance</p>
+					<ul class="space-y-4 text-body text-rfi-muted">
+						<li>
+							<strong class="text-rfi-white">Focus:</strong> Application integration, data analytics,
+							and AI for construction
+						</li>
+						<li>
+							<strong class="text-rfi-white">Approach:</strong> Practical, outcome-driven technology
+							partnerships
+						</li>
+						<li>
+							<strong class="text-rfi-white">Foundation:</strong> Trust, innovation, and clarity in
+							every engagement
+						</li>
+					</ul>
+				</Card>
+			</div>
+		</div>
+	</Section>
+
+	<Section class="bg-rfi-navy-900/50">
+		<div class="container-rfi">
+			<SectionHeader
+				overline="Our Values"
+				title="What guides every project"
+				description="These principles shape how we design solutions, communicate with clients, and deliver long-term value."
+			/>
+			<div class="grid gap-6 md:grid-cols-3">
+				{
+					brand.values.map((value) => (
+						<Card variant="elevated" class="text-center">
+							<h3 class="typo-heading-sm mb-3 text-gradient-brand">{value}</h3>
+							<p class="text-body-sm text-rfi-subtle">
+								{value === 'Trust' &&
+									'We earn confidence through transparency, reliability, and construction domain expertise.'}
+								{value === 'Innovation' &&
+									'We apply modern integration, analytics, and AI where they create real project impact.'}
+								{value === 'Clarity' &&
+									'We cut through complexity so teams understand their data and can act on it.'}
+							</p>
+						</Card>
+					))
+				}
+			</div>
+		</div>
+	</Section>
+
+	<Section>
+		<div class="container-rfi max-w-prose">
+			<SectionHeader
+				overline="Why RFI"
+				title="Construction-first technology"
+				description="RFI Data Solutions combines deep systems integration experience with an understanding of how construction teams actually work — in the office, on site, and across the supply chain."
+			/>
+			<p class="text-body text-rfi-muted">
+				We partner with general contractors, owners, engineers, and technology vendors to solve data
+				silos, manual reporting, and slow decision cycles. Our work spans strategy, implementation,
+				and ongoing optimization — always with an eye toward adoption and measurable results.
+			</p>
+		</div>
+	</Section>
+
+	<CTASection
+		title="Want to work with us?"
+		description="Learn how RFI can support your next integration, analytics, or AI initiative."
+		buttonText="Get in Touch"
+	/>
+</PageLayout>

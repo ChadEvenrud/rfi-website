@@ -1,0 +1,29 @@
+---
+interface Props {
+	variant?: 'default' | 'elevated' | 'glow' | 'gradient-border';
+	class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const variantClasses = {
+	default: 'card',
+	elevated: 'card-elevated',
+	glow: 'card-glow',
+	'gradient-border': 'card-gradient-border',
+};
+---
+
+{
+	variant === 'gradient-border' ? (
+		<div class={`${variantClasses[variant]} ${className}`}>
+			<div class="card-gradient-border-inner">
+				<slot />
+			</div>
+		</div>
+	) : (
+		<div class={`${variantClasses[variant]} ${className}`}>
+			<slot />
+		</div>
+	)
+}

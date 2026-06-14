@@ -1,0 +1,206 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import HeroDataVisual from '../components/HeroDataVisual.astro';
+import CTASection from '../components/CTASection.astro';
+import { pageMeta } from '../data/pages';
+
+const meta = pageMeta.home;
+
+const problems = [
+	{
+		title: 'Disconnected systems',
+		description:
+			'Project data lives in silos — estimating, accounting, field tools, and PM software rarely talk to each other.',
+	},
+	{
+		title: 'Manual reporting',
+		description:
+			'Teams spend hours each week copying numbers between systems instead of analyzing what they mean.',
+	},
+	{
+		title: 'Spreadsheet dependency',
+		description:
+			'Critical reports and forecasts rely on fragile spreadsheets that are hard to maintain and easy to break.',
+	},
+	{
+		title: 'Poor visibility',
+		description:
+			'Leadership lacks a clear, timely view of job cost, production, and project health across the portfolio.',
+	},
+];
+
+const services = [
+	{
+		title: 'Data Integration',
+		description:
+			'Connect your construction applications so data flows automatically between the field, office, and accounting.',
+		accent: 'cyan',
+	},
+	{
+		title: 'Reporting & Dashboards',
+		description:
+			'Replace manual reports with dashboards your PMs, supers, and executives actually use every week.',
+		accent: 'blue',
+	},
+	{
+		title: 'AI Enablement',
+		description:
+			'Identify practical AI use cases — document review, forecasting, and workflow automation — that fit your team today.',
+		accent: 'violet',
+	},
+	{
+		title: 'Data Strategy',
+		description:
+			'Define a realistic roadmap for data standards, governance, and analytics that scales with your company.',
+		accent: 'blue',
+	},
+	{
+		title: 'Managed Support',
+		description:
+			'Keep integrations and reports running with ongoing monitoring, updates, and expert support from RFI.',
+		accent: 'cyan',
+	},
+] as const;
+
+const whyRfi = [
+	{
+		title: 'Construction industry knowledge',
+		description:
+			'We understand how small and midsized contractors operate — tight teams, lean IT, and real jobsite pressure.',
+	},
+	{
+		title: 'Platform-neutral approach',
+		description:
+			'We work with the tools you already use. No vendor lock-in, no forced platform migrations.',
+	},
+	{
+		title: 'Small expert consulting model',
+		description:
+			'You work directly with experienced practitioners — not a large bench of generalists or offshore delivery teams.',
+	},
+	{
+		title: 'Practical implementation focus',
+		description:
+			'We prioritize solutions your team will adopt: clear scope, quick wins, and measurable outcomes on every project.',
+	},
+];
+
+const accentDot = {
+	cyan: 'bg-rfi-cyan shadow-glow-cyan',
+	blue: 'bg-rfi-blue shadow-glow-blue',
+	violet: 'bg-rfi-violet shadow-glow-violet',
+};
+---
+
+<PageLayout title={meta.title} description={meta.description}>
+	<!-- 1. Hero -->
+	<Section size="lg" class="relative overflow-hidden bg-gradient-hero bg-blueprint">
+		<div class="container-rfi relative z-10">
+			<div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+				<div class="text-center lg:text-left">
+					<p class="typo-overline mb-4">Construction Data & Technology</p>
+					<h1 class="typo-display-lg max-w-2xl sm:typo-display">
+						Data, reporting, AI, and integrations — built for{' '}
+						<span class="text-gradient-brand">construction teams</span>
+					</h1>
+					<p class="typo-lead mt-6 max-w-xl lg:mx-0 mx-auto">
+						RFI Data Solutions helps small to midsized construction companies connect their
+						systems, automate reporting, and put AI to work — without enterprise complexity.
+					</p>
+					<div class="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+						<Button size="lg" href="/contact">Schedule a Consultation</Button>
+						<Button size="lg" variant="secondary" href="/services">View Services</Button>
+					</div>
+				</div>
+				<div class="hidden lg:block">
+					<HeroDataVisual />
+				</div>
+			</div>
+		</div>
+	</Section>
+
+	<!-- 2. Problem -->
+	<Section class="border-t border-rfi-navy-600/40 bg-rfi-navy-900/30">
+		<div class="container-rfi">
+			<SectionHeader
+				overline="The Challenge"
+				title="Your data should work as hard as your crews"
+				description="Most small and midsized construction companies face the same obstacles — and they compound as you grow."
+			/>
+			<div class="grid gap-6 sm:grid-cols-2">
+				{
+					problems.map(({ title, description }) => (
+						<Card variant="elevated">
+							<div class="mb-4 flex items-center gap-3">
+								<span class="glow-dot shrink-0 bg-rfi-violet shadow-glow-violet" />
+								<h3 class="typo-heading-sm">{title}</h3>
+							</div>
+							<p class="text-body-sm text-rfi-subtle">{description}</p>
+						</Card>
+					))
+				}
+			</div>
+		</div>
+	</Section>
+
+	<!-- 3. Services overview -->
+	<Section>
+		<div class="container-rfi">
+			<SectionHeader
+				overline="Services"
+				title="Everything you need to get control of your construction data"
+				description="From connecting your first two systems to building AI-ready reporting — RFI meets you where you are."
+			/>
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					services.map(({ title, description, accent }) => (
+						<Card variant="elevated">
+							<div class={`glow-dot mb-4 ${accentDot[accent]}`} />
+							<h3 class="typo-heading-sm mb-3">{title}</h3>
+							<p class="text-body-sm text-rfi-subtle">{description}</p>
+						</Card>
+					))
+				}
+			</div>
+			<div class="mt-10">
+				<Button href="/services" variant="secondary">
+					Explore All Services
+				</Button>
+			</div>
+		</div>
+	</Section>
+
+	<!-- 4. Why RFI -->
+	<Section class="bg-rfi-navy-900/50">
+		<div class="container-rfi">
+			<SectionHeader
+				overline="Why RFI Data Solutions"
+				title="A partner sized for your business"
+				description="We built RFI for construction companies that need expert help — not a massive software rollout."
+			/>
+			<div class="grid gap-6 md:grid-cols-2">
+				{
+					whyRfi.map(({ title, description }) => (
+						<Card variant="glow">
+							<h3 class="typo-heading-sm mb-3">{title}</h3>
+							<p class="text-body-sm text-rfi-subtle">{description}</p>
+						</Card>
+					))
+				}
+			</div>
+		</div>
+	</Section>
+
+	<!-- 5. CTA -->
+	<CTASection
+		overline="Next Step"
+		title="Schedule a discovery call"
+		description="Tell us about your systems, reporting pain points, and goals. We'll outline a practical path forward — no pressure, no generic pitch."
+		buttonText="Schedule a Discovery Call"
+		buttonHref="/contact"
+	/>
+</PageLayout>

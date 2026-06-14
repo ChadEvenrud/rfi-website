@@ -1,0 +1,128 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import { pageMeta } from '../data/pages';
+
+const meta = pageMeta.services;
+
+const services = [
+	{
+		title: 'Application Integration',
+		description:
+			'Unify ERP, project management, BIM, and field applications with reliable APIs, middleware, and data pipelines tailored to construction workflows.',
+		accent: 'cyan',
+	},
+	{
+		title: 'Data Analytics & Reporting',
+		description:
+			'Design dashboards, KPI frameworks, and executive reporting that translate jobsite and financial data into clear, actionable insights.',
+		accent: 'blue',
+	},
+	{
+		title: 'AI & Intelligent Automation',
+		description:
+			'Deploy machine learning and AI assistants for document review, risk detection, schedule optimization, and predictive project intelligence.',
+		accent: 'violet',
+	},
+	{
+		title: 'Platform Development',
+		description:
+			'Build custom portals, mobile tools, and internal platforms that connect teams, vendors, and stakeholders across the project lifecycle.',
+		accent: 'cyan',
+	},
+	{
+		title: 'Data Strategy & Governance',
+		description:
+			'Establish data models, quality standards, and governance practices so your organization can scale analytics and AI with confidence.',
+		accent: 'blue',
+	},
+	{
+		title: 'Advisory & Implementation',
+		description:
+			'Partner with RFI from discovery through rollout — roadmap planning, vendor evaluation, change management, and ongoing optimization.',
+		accent: 'violet',
+	},
+] as const;
+
+const accentDot = {
+	cyan: 'bg-rfi-cyan shadow-glow-cyan',
+	blue: 'bg-rfi-blue shadow-glow-blue',
+	violet: 'bg-rfi-violet shadow-glow-violet',
+};
+---
+
+<PageLayout title={meta.title} description={meta.description}>
+	<PageHero
+		overline="Services"
+		title="Construction technology, end to end"
+		description="RFI Data Solutions helps construction organizations integrate systems, analyze project data, and apply AI where it delivers measurable impact."
+	/>
+
+	<Section>
+		<div class="container-rfi">
+			<SectionHeader
+				overline="What We Deliver"
+				title="Services built for the field and the office"
+				description="Every engagement is grounded in construction reality — complex projects, distributed teams, and data spread across dozens of tools."
+			/>
+			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+				{
+					services.map(({ title, description, accent }) => (
+						<Card variant="elevated">
+							<div class={`glow-dot mb-4 ${accentDot[accent]}`} />
+							<h3 class="typo-heading-sm mb-3">{title}</h3>
+							<p class="text-body-sm text-rfi-subtle">{description}</p>
+						</Card>
+					))
+				}
+			</div>
+		</div>
+	</Section>
+
+	<Section class="bg-rfi-navy-900/50">
+		<div class="container-rfi">
+			<SectionHeader
+				overline="How We Work"
+				title="A clear path from strategy to execution"
+				description="We combine technical depth with construction domain expertise to deliver outcomes — not just integrations."
+			/>
+			<div class="grid gap-6 md:grid-cols-3">
+				<Card variant="glow">
+					<p class="typo-overline mb-2">01</p>
+					<h3 class="typo-heading-sm mb-2">Discover</h3>
+					<p class="text-body-sm text-rfi-subtle">
+						Assess systems, data flows, and business goals to define a prioritized roadmap.
+					</p>
+				</Card>
+				<Card variant="glow">
+					<p class="typo-overline mb-2">02</p>
+					<h3 class="typo-heading-sm mb-2">Design & Build</h3>
+					<p class="text-body-sm text-rfi-subtle">
+						Architect solutions, integrate platforms, and validate with pilot teams before scale.
+					</p>
+				</Card>
+				<Card variant="glow">
+					<p class="typo-overline mb-2">03</p>
+					<h3 class="typo-heading-sm mb-2">Deploy & Optimize</h3>
+					<p class="text-body-sm text-rfi-subtle">
+						Launch with training and support, then iterate based on adoption and performance data.
+					</p>
+				</Card>
+			</div>
+			<div class="mt-10">
+				<Button href="/contact">Discuss Your Project</Button>
+			</div>
+		</div>
+	</Section>
+
+	<CTASection
+		title="Not sure where to start?"
+		description="Tell us about your systems and goals — we'll recommend a practical first step for integration, analytics, or AI."
+		buttonText="Schedule a Conversation"
+	/>
+</PageLayout>

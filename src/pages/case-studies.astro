@@ -1,0 +1,89 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import { pageMeta } from '../data/pages';
+
+const meta = pageMeta.caseStudies;
+
+const caseStudies = [
+	{
+		title: 'Enterprise Integration for a National GC',
+		industry: 'General Contracting',
+		summary:
+			'Connected ERP, project controls, and field management platforms to eliminate duplicate entry and accelerate monthly reporting.',
+		results: ['40% reduction in manual data entry', 'Unified executive dashboard across 12 regions'],
+	},
+	{
+		title: 'Portfolio Analytics for a Commercial Developer',
+		industry: 'Owners & Developers',
+		summary:
+			'Built a standardized data model and reporting layer across active developments, giving leadership real-time portfolio visibility.',
+		results: ['Single source of truth for schedule and cost KPIs', 'Faster board-level reporting cycles'],
+	},
+	{
+		title: 'AI-Assisted Document Review',
+		industry: 'Infrastructure',
+		summary:
+			'Deployed an AI workflow to triage submittals and flag compliance gaps, reducing review bottlenecks on a major civil program.',
+		results: ['60% faster initial document triage', 'Improved audit trail for compliance teams'],
+	},
+];
+---
+
+<PageLayout title={meta.title} description={meta.description}>
+	<PageHero
+		overline="Case Studies"
+		title="Results on real construction projects"
+		description="See how RFI Data Solutions helps teams integrate systems, unlock analytics, and apply AI to solve everyday project challenges."
+	/>
+
+	<Section>
+		<div class="container-rfi space-y-8">
+			<SectionHeader
+				overline="Featured Work"
+				title="Proven outcomes across the industry"
+				description="Representative examples of how RFI partners with construction organizations to deliver integration, analytics, and AI at scale."
+			/>
+			{
+				caseStudies.map(({ title, industry, summary, results }) => (
+					<Card variant="elevated">
+						<p class="typo-overline mb-2">{industry}</p>
+						<h3 class="typo-heading-sm mb-3">{title}</h3>
+						<p class="mb-6 text-body text-rfi-muted">{summary}</p>
+						<ul class="space-y-2">
+							{results.map((result) => (
+								<li class="flex items-start gap-3 text-body-sm text-rfi-subtle">
+									<span class="glow-dot mt-1.5 shrink-0" />
+									{result}
+								</li>
+							))}
+						</ul>
+					</Card>
+				))
+			}
+		</div>
+	</Section>
+
+	<Section class="bg-rfi-navy-900/50">
+		<div class="container-rfi text-center">
+			<SectionHeader
+				class="mx-auto"
+				overline="Your Project Next"
+				title="Every engagement starts with your goals"
+				description="We tailor integration, analytics, and AI solutions to your systems, teams, and project portfolio."
+			/>
+			<Button href="/contact">Start a Conversation</Button>
+		</div>
+	</Section>
+
+	<CTASection
+		title="Ready to write your success story?"
+		description="Tell us about your challenges — we'll share relevant experience and a recommended path forward."
+		buttonText="Contact RFI"
+	/>
+</PageLayout>

@@ -1,0 +1,108 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import { pageMeta } from '../data/pages';
+
+const meta = pageMeta.insights;
+
+const articles = [
+	{
+		title: 'Why Construction Data Integration Fails — and How to Fix It',
+		category: 'Integration',
+		excerpt:
+			'Most integration projects stall because of unclear ownership, inconsistent data models, and missing field adoption. Here is a practical framework to get it right.',
+		date: 'June 2026',
+	},
+	{
+		title: 'From Dashboards to Decisions: Analytics That Field Teams Actually Use',
+		category: 'Analytics',
+		excerpt:
+			'Executive dashboards only matter if supers and PMs trust the numbers. Learn how to design analytics for adoption across the jobsite and the office.',
+		date: 'May 2026',
+	},
+	{
+		title: 'AI in Construction: Start with High-Value, Low-Risk Workflows',
+		category: 'AI',
+		excerpt:
+			'Document triage, schedule risk, and cost forecasting are strong first use cases for AI in construction. A guide to prioritizing where AI delivers ROI today.',
+		date: 'April 2026',
+	},
+	{
+		title: 'Building a Data Strategy for Multi-Project Organizations',
+		category: 'Strategy',
+		excerpt:
+			'Standardizing data across projects is the foundation for portfolio analytics and AI. Key steps for GCs and owners managing complex programs.',
+		date: 'March 2026',
+	},
+];
+---
+
+<PageLayout title={meta.title} description={meta.description}>
+	<PageHero
+		overline="Insights"
+		title="Construction technology perspectives"
+		description="Thoughts on integration, data analytics, and AI from the RFI Data Solutions team — practical guidance for modern construction leaders."
+	/>
+
+	<Section>
+		<div class="container-rfi">
+			<SectionHeader
+				overline="Latest Articles"
+				title="Ideas for building smarter"
+				description="Explore trends, best practices, and lessons learned from construction technology implementations."
+			/>
+			<div class="grid gap-6 md:grid-cols-2">
+				{
+					articles.map(({ title, category, excerpt, date }) => (
+						<Card variant="elevated">
+							<div class="mb-3 flex items-center justify-between gap-4">
+								<span class="typo-overline">{category}</span>
+								<time class="text-caption text-rfi-subtle" datetime={date}>
+									{date}
+								</time>
+							</div>
+							<h3 class="typo-heading-sm mb-3">{title}</h3>
+							<p class="text-body-sm text-rfi-subtle">{excerpt}</p>
+						</Card>
+					))
+				}
+			</div>
+		</div>
+	</Section>
+
+	<Section class="bg-rfi-navy-900/50">
+		<div class="container-rfi">
+			<SectionHeader
+				overline="Topics We Cover"
+				title="Integration, analytics, and AI for construction"
+			/>
+			<div class="flex flex-wrap gap-3">
+				{
+					['Application Integration', 'Data Analytics', 'AI & Automation', 'Data Strategy'].map(
+						(topic) => (
+							<span class="rounded-full border border-rfi-violet/30 bg-rfi-violet-dim px-5 py-2 text-body-sm font-medium text-rfi-violet">
+								{topic}
+							</span>
+						),
+					)
+				}
+			</div>
+			<div class="mt-10">
+				<Button href="/contact" variant="secondary">
+					Subscribe for Updates
+				</Button>
+			</div>
+		</div>
+	</Section>
+
+	<CTASection
+		title="Have a topic you'd like us to cover?"
+		description="Reach out with questions or ideas — we're always listening to what construction teams need next."
+		buttonText="Send a Message"
+	/>
+</PageLayout>

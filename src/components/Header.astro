@@ -1,0 +1,44 @@
+---
+import Logo from './Logo.astro';
+import { mainNav, isActiveNav } from '../data/navigation';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header site-header--logo-vertical sticky top-0 z-50 border-b border-rfi-navy-600/50 bg-rfi-navy-950/90 backdrop-blur-md" data-header>
+	<div class="site-header-inner container-rfi flex items-center gap-6 lg:gap-8">
+		<Logo />
+		<nav class="site-header-nav flex flex-1 flex-wrap items-center gap-x-6 gap-y-2" aria-label="Main navigation">
+			{
+				mainNav.map(({ href, label }) => (
+					<a
+						href={href}
+						class={isActiveNav(href, currentPath) ? 'nav-link-active' : 'nav-link'}
+						aria-current={isActiveNav(href, currentPath) ? 'page' : undefined}
+					>
+						{label}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</header>
+
+<script>
+	function initHeader() {
+		const header = document.querySelector<HTMLElement>('[data-header]');
+		if (!header) return;
+
+		const threshold = 48;
+
+		const update = () => {
+			header.classList.toggle('is-scrolled', window.scrollY > threshold);
+		};
+
+		update();
+		window.addEventListener('scroll', update, { passive: true });
+	}
+
+	initHeader();
+	document.addEventListener('astro:page-load', initHeader);
+</script>

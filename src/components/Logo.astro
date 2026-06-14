@@ -1,0 +1,23 @@
+---
+import { brand, type LogoVariant } from '../data/brand';
+
+interface Props {
+	variant?: LogoVariant;
+	href?: string;
+	class?: string;
+}
+
+const { variant = 'vertical', href = '/', class: className = '' } = Astro.props;
+
+const logo = brand.logo[variant];
+---
+
+<a href={href} class={`logo-wrap-header ${className}`} aria-label={brand.name}>
+	<img
+		src={logo.src}
+		alt={logo.alt}
+		class={`header-logo-img header-logo-img--${variant}`}
+		loading="eager"
+		decoding="async"
+	/>
+</a>

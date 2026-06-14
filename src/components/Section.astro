@@ -1,0 +1,20 @@
+---
+interface Props {
+	size?: 'sm' | 'default' | 'lg' | 'xl';
+	class?: string;
+	id?: string;
+}
+
+const { size = 'default', class: className = '', id } = Astro.props;
+
+const sizeClasses = {
+	sm: 'section-sm',
+	default: 'section',
+	lg: 'section-lg',
+	xl: 'section-xl',
+};
+---
+
+<section id={id} class={`${sizeClasses[size]} ${className}`}>
+	<slot />
+</section>

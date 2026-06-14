@@ -1,0 +1,121 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import { pageMeta } from '../data/pages';
+import { site } from '../data/site';
+
+const meta = pageMeta.contact;
+
+const contactMethods = [
+	{
+		title: 'Email',
+		value: 'hello@rfidatasolutions.net',
+		href: 'mailto:hello@rfidatasolutions.net',
+		description: 'For project inquiries, partnerships, and general questions.',
+	},
+	{
+		title: 'Website',
+		value: 'rfidatasolutions.net',
+		href: site.url,
+		description: 'Learn more about our services, industries, and case studies.',
+	},
+];
+---
+
+<PageLayout title={meta.title} description={meta.description}>
+	<PageHero
+		overline="Contact"
+		title="Let's talk about your project"
+		description="Tell us about your integration, analytics, or AI goals. The RFI team will respond with next steps and how we can help."
+	/>
+
+	<Section>
+		<div class="container-rfi">
+			<div class="grid gap-12 lg:grid-cols-2">
+				<div>
+					<SectionHeader
+						overline="Get in Touch"
+						title="Start the conversation"
+						description="Whether you're planning a full platform integration or exploring your first analytics dashboard, we're here to help you move forward with clarity."
+					/>
+					<div class="space-y-6">
+						{
+							contactMethods.map(({ title, value, href, description }) => (
+								<Card variant="elevated">
+									<h3 class="typo-heading-sm mb-1">{title}</h3>
+									<a
+										href={href}
+										class="text-body font-medium text-rfi-cyan transition hover:text-rfi-cyan-light"
+									>
+										{value}
+									</a>
+									<p class="mt-2 text-body-sm text-rfi-subtle">{description}</p>
+								</Card>
+							))
+						}
+					</div>
+				</div>
+
+				<Card variant="gradient-border">
+					<form class="space-y-6" method="POST" action="#" aria-label="Contact form">
+						<div>
+							<label for="name" class="mb-2 block text-body-sm font-medium text-rfi-white">
+								Name
+							</label>
+							<input
+								type="text"
+								id="name"
+								name="name"
+								required
+								class="w-full rounded-brand border border-rfi-navy-600 bg-rfi-navy-800 px-4 py-3 text-body text-rfi-white placeholder:text-rfi-subtle focus:border-rfi-cyan focus:outline-none focus:ring-1 focus:ring-rfi-cyan"
+								placeholder="Your name"
+							/>
+						</div>
+						<div>
+							<label for="email" class="mb-2 block text-body-sm font-medium text-rfi-white">
+								Email
+							</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								required
+								class="w-full rounded-brand border border-rfi-navy-600 bg-rfi-navy-800 px-4 py-3 text-body text-rfi-white placeholder:text-rfi-subtle focus:border-rfi-cyan focus:outline-none focus:ring-1 focus:ring-rfi-cyan"
+								placeholder="you@company.com"
+							/>
+						</div>
+						<div>
+							<label for="company" class="mb-2 block text-body-sm font-medium text-rfi-white">
+								Company
+							</label>
+							<input
+								type="text"
+								id="company"
+								name="company"
+								class="w-full rounded-brand border border-rfi-navy-600 bg-rfi-navy-800 px-4 py-3 text-body text-rfi-white placeholder:text-rfi-subtle focus:border-rfi-cyan focus:outline-none focus:ring-1 focus:ring-rfi-cyan"
+								placeholder="Your organization"
+							/>
+						</div>
+						<div>
+							<label for="message" class="mb-2 block text-body-sm font-medium text-rfi-white">
+								Message
+							</label>
+							<textarea
+								id="message"
+								name="message"
+								rows={5}
+								required
+								class="w-full resize-y rounded-brand border border-rfi-navy-600 bg-rfi-navy-800 px-4 py-3 text-body text-rfi-white placeholder:text-rfi-subtle focus:border-rfi-cyan focus:outline-none focus:ring-1 focus:ring-rfi-cyan"
+								placeholder="Tell us about your project or question"
+							/>
+						</div>
+						<button type="submit" class="btn-primary w-full sm:w-auto">Send Message</button>
+					</form>
+				</Card>
+			</div>
+		</div>
+	</Section>
+</PageLayout>

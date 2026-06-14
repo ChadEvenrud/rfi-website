@@ -1,0 +1,107 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import { pageMeta } from '../data/pages';
+
+const meta = pageMeta.industries;
+
+const industries = [
+	{
+		title: 'General Contractors',
+		description:
+			'Connect preconstruction, scheduling, cost, and field reporting so GC teams operate from a single source of truth.',
+	},
+	{
+		title: 'Owners & Developers',
+		description:
+			'Gain portfolio-level visibility across capital programs with integrated dashboards and standardized project data.',
+	},
+	{
+		title: 'Engineering & Design',
+		description:
+			'Bridge BIM, design coordination, and construction management tools to reduce rework and improve handoffs.',
+	},
+	{
+		title: 'Specialty Trades',
+		description:
+			'Integrate trade-specific workflows with GC platforms for smoother submittals, RFIs, and production tracking.',
+	},
+	{
+		title: 'Infrastructure & Civil',
+		description:
+			'Support large-scale, multi-phase projects with robust data pipelines, analytics, and compliance reporting.',
+	},
+	{
+		title: 'Construction Technology Vendors',
+		description:
+			'Partner with RFI to extend your product through integrations, analytics layers, and AI capabilities.',
+	},
+];
+---
+
+<PageLayout title={meta.title} description={meta.description}>
+	<PageHero
+		overline="Industries"
+		title="Built for every corner of construction"
+		description="RFI Data Solutions adapts to the way your sector operates — from high-rise commercial to heavy civil and specialty trade environments."
+	/>
+
+	<Section>
+		<div class="container-rfi">
+			<SectionHeader
+				overline="Who We Serve"
+				title="Industry expertise that matches your workflow"
+				description="We understand the systems, stakeholders, and data challenges unique to each segment of the construction industry."
+			/>
+			<div class="grid gap-6 md:grid-cols-2">
+				{
+					industries.map(({ title, description }) => (
+						<Card variant="elevated">
+							<h3 class="typo-heading-sm mb-3">{title}</h3>
+							<p class="text-body-sm text-rfi-subtle">{description}</p>
+						</Card>
+					))
+				}
+			</div>
+		</div>
+	</Section>
+
+	<Section class="bg-rfi-navy-900/50">
+		<div class="container-rfi">
+			<SectionHeader
+				overline="Cross-Industry Capabilities"
+				title="Common challenges, tailored solutions"
+				description="Whether you manage a single project or a national portfolio, RFI brings the same focus on clarity and measurable outcomes."
+			/>
+			<ul class="grid gap-4 sm:grid-cols-2">
+				{
+					[
+						'Multi-system integration across project phases',
+						'Executive and field-ready analytics dashboards',
+						'AI-assisted document and risk workflows',
+						'Scalable data architecture for growth',
+					].map((item) => (
+						<li class="flex items-start gap-3 text-body text-rfi-muted">
+							<span class="glow-dot mt-2 shrink-0" />
+							{item}
+						</li>
+					))
+				}
+			</ul>
+			<div class="mt-10 flex flex-wrap gap-4">
+				<Button href="/case-studies">View Case Studies</Button>
+				<Button variant="secondary" href="/services">Explore Services</Button>
+			</div>
+		</div>
+	</Section>
+
+	<CTASection
+		title="Serving your industry?"
+		description="Share your sector and project type — we'll outline how RFI can support your integration, analytics, and AI goals."
+	/>
+</PageLayout>
