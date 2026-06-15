@@ -1,5 +1,6 @@
 ---
 import { brand, type LogoVariant } from '../data/brand';
+import { asset, href } from '../utils/url';
 
 interface Props {
 	variant?: LogoVariant;
@@ -7,14 +8,14 @@ interface Props {
 	class?: string;
 }
 
-const { variant = 'vertical', href = '/', class: className = '' } = Astro.props;
+const { variant = 'vertical', href: linkHref = '/', class: className = '' } = Astro.props;
 
 const logo = brand.logo[variant];
 ---
 
-<a href={href} class={`logo-wrap-header ${className}`} aria-label={brand.name}>
+<a href={href(linkHref)} class={`logo-wrap-header ${className}`} aria-label={brand.name}>
 	<img
-		src={logo.src}
+		src={asset(logo.src)}
 		alt={logo.alt}
 		class={`header-logo-img header-logo-img--${variant}`}
 		loading="eager"

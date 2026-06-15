@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { mainNav, isActiveNav } from '../data/navigation';
+import { href as withBase } from '../utils/url';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -12,7 +13,7 @@ const currentPath = Astro.url.pathname;
 			{
 				mainNav.map(({ href, label }) => (
 					<a
-						href={href}
+						href={withBase(href)}
 						class={isActiveNav(href, currentPath) ? 'nav-link-active' : 'nav-link'}
 						aria-current={isActiveNav(href, currentPath) ? 'page' : undefined}
 					>

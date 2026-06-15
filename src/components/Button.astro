@@ -1,5 +1,6 @@
 ---
 import type { ButtonVariant } from '../data/brand';
+import { href as withBase } from '../utils/url';
 
 interface Props {
 	variant?: ButtonVariant;
@@ -17,6 +18,8 @@ const {
 	class: className = '',
 } = Astro.props;
 
+const linkHref = href ? withBase(href) : undefined;
+
 const variantClasses: Record<ButtonVariant, string> = {
 	primary: 'btn-primary',
 	secondary: 'btn-secondary',
@@ -33,8 +36,8 @@ const classes = [variantClasses[variant], sizeClasses[size], className].filter(B
 ---
 
 {
-	href ? (
-		<a href={href} class={classes}>
+	linkHref ? (
+		<a href={linkHref} class={classes}>
 			<slot />
 		</a>
 	) : (

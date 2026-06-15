@@ -2,6 +2,7 @@
 import SEO from '../components/SEO.astro';
 import { site } from '../data/site';
 import type { SEOProps } from '../types/seo';
+import { asset } from '../utils/url';
 import '../styles/global.css';
 
 interface Props extends SEOProps {}
@@ -15,7 +16,7 @@ const { title, description, canonical, image, noindex, type, publishedTime, modi
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/png" href="/images/brand/rfi-logo-vertical.png" />
+		<link rel="icon" type="image/png" href={asset('/images/brand/rfi-logo-vertical.png')} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

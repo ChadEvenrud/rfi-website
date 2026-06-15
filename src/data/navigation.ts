@@ -13,7 +13,14 @@ export const mainNav: NavLink[] = [
 	{ href: '/contact', label: 'Contact' },
 ];
 
-export function isActiveNav(href: string, pathname: string): boolean {
-	if (href === '/') return pathname === '/';
-	return pathname === href || pathname.startsWith(`${href}/`);
+export function isActiveNav(linkHref: string, pathname: string): boolean {
+	const base = import.meta.env.BASE_URL;
+	let path = pathname;
+
+	if (base !== '/') {
+		path = path.replace(new RegExp(`^${base.replace(/\/$/, '')}`), '') || '/';
+	}
+
+	if (linkHref === '/') return path === '/' || path === '';
+	return path === linkHref || path.startsWith(`${linkHref}/`);
 }

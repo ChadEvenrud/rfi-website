@@ -1,13 +1,14 @@
 ---
 import { brand } from '../data/brand';
 import { mainNav } from '../data/navigation';
+import { href as withBase } from '../utils/url';
 ---
 
 <footer class="border-t border-rfi-navy-600/50 bg-rfi-navy-900">
 	<div class="container-rfi py-10">
 		<div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
 			<div>
-				<a href="/" class="typo-heading-sm text-rfi-white transition hover:text-rfi-cyan">
+				<a href={withBase('/')} class="typo-heading-sm text-rfi-white transition hover:text-rfi-cyan">
 					{brand.name}
 				</a>
 				<p class="mt-2 max-w-xs text-body-sm text-rfi-subtle">{brand.tagline}</p>
@@ -15,7 +16,7 @@ import { mainNav } from '../data/navigation';
 			<nav class="flex flex-wrap gap-x-6 gap-y-2" aria-label="Footer navigation">
 				{
 					mainNav.map(({ href, label }) => (
-						<a href={href} class="nav-link">
+						<a href={withBase(href)} class="nav-link">
 							{label}
 						</a>
 					))
